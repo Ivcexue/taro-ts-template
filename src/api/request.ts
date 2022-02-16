@@ -3,9 +3,7 @@ import Taro from '@tarojs/taro';
 
 const request = axios;
 
-// const baseURL = process.env.BASE_URL;
-const baseURL = "http://test.oaexpert.com/gateway/";
-
+const baseURL = process.env.BASE_URL;
 request.defaults.baseURL = baseURL;
 request.defaults.headers = {
   "content-type": "application/json",

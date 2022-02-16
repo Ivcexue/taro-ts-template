@@ -1,11 +1,13 @@
 module.exports = {
   env: {
-    NODE_ENV: '"production"'
+    NODE_ENV: '"production"',
+    BASE_URL: '"http://test.oaexpert.com/gateway/production"'
   },
   defineConstants: {
   },
   mini: {},
   h5: {
+    esnextModules: ['taro-ui']
     /**
      * WebpackChain 插件配置
      * @docs https://github.com/neutrinojs/webpack-chain

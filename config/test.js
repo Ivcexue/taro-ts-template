@@ -1,7 +1,7 @@
+/** Created by xwp on 2022-02-16 **/
 module.exports = {
   env: {
-    NODE_ENV: '"development"',
-    BASE_URL: '"http://test.oaexpert.com/gateway/"'
+    NODE_ENV: '"test"',
   },
   defineConstants: {
   },
