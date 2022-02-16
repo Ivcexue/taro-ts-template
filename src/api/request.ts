@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro';
 const request = axios;
 
 const baseURL = process.env.BASE_URL;
+
 request.defaults.baseURL = baseURL;
 request.defaults.headers = {
   "content-type": "application/json",
@@ -19,6 +20,9 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
+
+    console.log(error, 'requeset')
+
     // if (error.status !== 200) console.log("error...");
     return Promise.reject(error);
   }
