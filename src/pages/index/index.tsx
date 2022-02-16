@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-// eslint-disable-next-line import/no-named-as-default
 import to from "await-to-js";
 import {useReady} from '@tarojs/taro'
 import {AtButton} from 'taro-ui'
