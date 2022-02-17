@@ -1,29 +1,64 @@
 import axios from "axios-miniprogram";
-import Taro from '@tarojs/taro';
+import {
+  atMessage,
+  getStorageSync,
+  hideNavigationBarLoading,
+  showNavigationBarLoading
+} from '@tarojs/taro';
+import {debounce} from "@/utils";
 
-const request = axios;
+// loading 对象
+let loading: any = null;
+// 当前正在请求的数量
+let needLoadingRequestCount = 0;
 
-const baseURL = process.env.BASE_URL;
+// 显示loading
+const showLoading = () => {
+  if (needLoadingRequestCount === 0 && !loading) loading = showNavigationBarLoading();
+  needLoadingRequestCount++;
+}
 
-request.defaults.baseURL = baseURL;
-request.defaults.headers = {
-  "content-type": "application/json",
-};
+// 隐藏loading
+const hideLoading = () => {
+  needLoadingRequestCount--;
+  needLoadingRequestCount = Math.max(needLoadingRequestCount, 0);
+  if (needLoadingRequestCount === 0) toHideLoading();
+}
+
+// 防止多次请求loading闪烁
+const toHideLoading = debounce(() => {
+  loading && hideNavigationBarLoading();
+  loading = null;
+}, 300)
+
+
+const request = axios.create({
+  baseURL: process.env.BASE_URL,
+  timeout: 30000,
+  headers: {
+    "content-type": "application/json",
+    "showLoading": true
+  }
+});
 
 request.interceptors.request.use(
   (config) => {
     config.headers = {
       ...config.headers,
-      token: Taro.getStorageSync("token"),
+      token: getStorageSync("token"),
     };
+    // 控制showLoading是否显示
+    if (config.headers.showLoading) showLoading()
 
     return config;
   },
   (error) => {
+    hideLoading()
 
-    console.log(error, 'requeset')
-
-    // if (error.status !== 200) console.log("error...");
+    atMessage({
+      message: '请求失败',
+      type: 'error'
+    })
     return Promise.reject(error);
   }
 );
@@ -33,11 +68,22 @@ request.interceptors.request.use(
  */
 request.interceptors.response.use(
   (response: any) => {
-    console.log(response, "response...");
+    if (response.status !== 200) {
+      console.log('error...')
+    }
 
-    return response;
+    hideLoading()
+    return response.data;
   },
-  (err) => Promise.reject(err)
+  (err) => {
+    hideLoading()
+    atMessage({
+      message: '请求失败',
+      type: 'error'
+    })
+
+    return Promise.reject(err)
+  }
 );
 
 export default request;

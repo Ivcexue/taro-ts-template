@@ -33,7 +33,8 @@
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "test:weapp": "cross-env NODE_ENV=test CLIENT_ENV=weapp taro build --type weapp",
     "commit": "git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "mock-server": "json-server --watch __JSON__SERVER__/db.json"
   },
   "config": {
     "commitizen": {
@@ -72,6 +73,7 @@
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
+    "hox": "^1.1.6",
     "lodash": "4.17.15",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -95,6 +97,7 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.4",
+    "json-server": "^0.17.0",
     "standard-version": "^9.3.2",
     "stylelint": "9.3.0",
     "typescript": "^4.1.0"

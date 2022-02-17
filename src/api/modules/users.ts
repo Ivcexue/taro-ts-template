@@ -1,9 +1,12 @@
 import request from '../request';
 
 const login = (userName: string, password: string) => {
-  return request.post("user/login", {
-    userName,
-    password,
+  return request("/test", {
+    method: 'get',
+    params: {
+      userName,
+      password
+    }
   });
 };
 
