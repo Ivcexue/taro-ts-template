@@ -49,6 +49,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,jsx}": [
+      "prettier --write",
       "eslint --fix",
       "git add"
     ]
@@ -73,8 +74,11 @@
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "hox": "^1.1.6",
     "lodash": "4.17.15",
+    "prettier": "^2.5.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "taro-hooks": "^1.5.3",

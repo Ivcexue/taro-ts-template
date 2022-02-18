@@ -1,27 +1,15 @@
-import {Component} from 'react'
+import {useReady, useDidHide, onPageNotFound} from '@tarojs/taro'
 import './app.scss'
 
-class App extends Component {
-  onPageNotFound() {
-    console.log('on page not found...')
-  }
+const App = (props) => {
+  onPageNotFound(() => {
+  })
+  useReady(() => {
+  })
+  useDidHide(() => {
+  })
 
-  componentDidMount() {
-  }
-
-  componentDidShow() {
-  }
-
-  componentDidHide() {
-  }
-
-  componentDidCatchError() {
-  }
-
-  // this.props.children 是将要会渲染的页面
-  render() {
-    return this.props.children
-  }
+  return props.children
 }
 
 export default App
