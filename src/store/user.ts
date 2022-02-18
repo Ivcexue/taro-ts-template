@@ -1,12 +1,8 @@
 import {useState} from 'react'
 import {createModel} from 'hox'
+import {IUserInfo} from "@/types/user";
 
-interface IUser {
-  userName: string;
-  age: number | null;
-}
-
-const INIT_USER_INFO: IUser = {
+const INIT_USER_INFO: IUserInfo = {
   userName: '',
   age: null
 }
@@ -14,7 +10,7 @@ const INIT_USER_INFO: IUser = {
 export const useSetUserInfo = createModel(() => {
   const [userInfo, setUserInfo] = useState(INIT_USER_INFO)
 
-  const updateUserInfo = (params = {}) => setUserInfo({
+  const updateUserInfo = (params: IUserInfo) => setUserInfo({
     ...userInfo,
     ...params
   })

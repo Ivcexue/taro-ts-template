@@ -37,8 +37,8 @@ const Index = () => {
 
   const handleAddClick = async () => {
     updateUserInfo({
-      userName: 'pg',
-      age: 10
+      userName: 'ives-xue',
+      age: 20
     })
 
     await Taro.switchTab({
@@ -48,7 +48,7 @@ const Index = () => {
 
   return (
     <>
-      <AtMessage/>
+      <AtMessage />
       <Skeleton
         row={2}
         action
